@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZADACA 2</title>
+</head>
+<body>
+    <script>
+        const getOperator = (num) => {
+            switch(+num){
+                case 0:
+                case 1:
+                case 2:
+                    return "T-Mobile";
+                case 5:
+                case 6:
+                    return"ONE";  
+                case 7:
+                case 8:
+                    return "VIP";
+                default:
+                    return ""
+            }
+        }
+        const formatPhoneNumber = (number) => {
+            let operator = getOperator(number.charAt(1));
+            let string = "0"+number
+            const formatedNumber = string.replace(/^(\d{3})(\d{3})(\d{3})$/,"$1/$2-$3")
+            return `${formatedNumber} ${operator}`
+
+        }
+
+        const num = window.prompt("Vnesete go telefonskiot broj za formatiranje!")
+        if(!isNaN(num)){
+            alert(formatPhoneNumber(num))
+        }else{
+            alert("Nevaliden vnes!!!")
+        }
+
+    </script>
+</body>
+</html>

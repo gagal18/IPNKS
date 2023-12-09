@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZADACA 1</title>
+</head>
+<body>
+    <script>
+
+        const isNumPalindrome = (number) => {
+            const length = number.length
+            let i = 0;
+            for(i; i < length/2; i++){
+                if(number[i] != number[length-i-1]){
+                    break;
+                }
+            }
+            return i*2 == length
+        }
+
+        const divideWithDigitSum = (number) => {
+            let sumDigits = 0;
+            for (let i = 0; i < number.length; i++) {
+                sumDigits += +number[i];
+                
+            }
+            return number % sumDigits == 0
+        }
+
+
+        const num = window.prompt("Vnesete go brojot za proverka!")
+        if(!isNaN(num)){
+            if(num.length < 4){
+            alert("Brojot ima pomalce od 4 cifri!!!")
+            }else{
+                alert(`Brojot ${isNumPalindrome(num) ? "e" : "ne e"} palindrom \nI ${divideWithDigitSum(num) ? "e" : "ne e"} delliv so zbirot na negovite cifri`)
+            }
+        }else{
+            alert("Nepravilen vlez!!!")
+        }
+
+
+    </script>
+</body>
+</html>

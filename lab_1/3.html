@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZADACA 3</title>
+</head>
+<body>
+    <script>
+        const stringArray = []  
+        let longestWord = '';
+        for (let i = 0; i < 3; i++) {
+            stringArray[i] = window.prompt(`Vnesete recenica pod reden broj ${i+1}`)
+            stringArray[i].split(" ").forEach(w => {
+                if(w.length > longestWord.length){
+                    longestWord = w;
+                }
+            })
+
+        }
+        alert(`Najdolgiot zbor pomegju site recenici e ${longestWord}`)
+
+    </script>
+</body>
+</html>
