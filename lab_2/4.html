@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complex Number Calculator</title>
+</head>
+<body>
+<div>
+    <h2>Complex Number calculator</h2>
+    <h3>Enter two complex numbers</h3>
+    <div>
+        <input id="num_1_real" />
+        <input id="num_1_img" /><i>i</i>
+    </div>
+    <div>
+        <input id="num_2_real" />
+        <input id="num_2_img" /><i>i</i>
+    </div>
+</div>
+<button id="calculateBtn">Add</button>
+<div>
+    <h3>Result</h3>
+    <div>
+        <input id="result_real" readonly />
+        <input id="result_img" readonly /><i>i</i>
+    </div>
+</div>
+
+
+<script>
+    const calculateResult = () => {
+        const num1Real = parseInt(document.getElementById("num_1_real").value) || 0;
+        const num1Img = parseInt(document.getElementById("num_1_img").value) || 0;
+        const num2Real = parseInt(document.getElementById("num_2_real").value) || 0;
+        const num2Img = parseInt(document.getElementById("num_2_img").value) || 0;
+
+        const resultReal = num1Real + num2Real;
+        const resultImg = num1Img + num2Img;
+
+        document.getElementById("result_real").value = resultReal;
+        document.getElementById("result_img").value = resultImg;
+    };
+
+
+    document.getElementById('calculateBtn').addEventListener('click', calculateResult);
+</script>
+</body>
+</html>

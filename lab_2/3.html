@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>About Me</title>
+</head>
+<body>
+<h1>About Me</h1>
+<ul>
+    <li>Name: <span id="name"></span>
+    <li>Index: <span id="index"></span>
+    <li>Hometown: <span id="hometown"></span>
+</ul>
+</body>
+<script>
+    const name = document.getElementById("name")
+    const index = document.getElementById("index")
+    const hometown = document.getElementById("hometown")
+    const fillData = () => {
+        name.innerText = "Bojan Gagaleski"
+        index.innerText = "226032"
+        hometown.innerText = "Struga"
+    }
+    const collorizeLi = () => {
+        const liEl = document.getElementsByTagName("li")
+        for (let i = 0; i < liEl.length; i++) {
+            liEl[i].style.background = 'red'
+        }
+    }
+    const fontChangeBody = () => {
+        document.body.style.fontFamily = 'Arial'
+    }
+    setTimeout(() => {
+        fillData()
+        collorizeLi()
+        fontChangeBody()
+    }, "1000");
+</script>
+</html>
