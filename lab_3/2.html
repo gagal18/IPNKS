@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZADACA 3 - LAB 3</title>
+</head>
+<body>
+    <h1>ZADACA 3 - LAB 3</h1>
+</body>
+
+<script>
+    const remove_array_element = (arr, element) => {
+        const tmp = [...arr]
+        const idx = tmp.indexOf(element)
+        tmp.splice(idx,1);
+        return tmp
+    }
+    const orginalArray = [1,2,3,4,5,6,3,4,5,8,9]
+    const noDuplicatesArray = remove_array_element(orginalArray, 2)
+    console.log(orginalArray)
+    console.log(noDuplicatesArray)
+</script>
+</html>

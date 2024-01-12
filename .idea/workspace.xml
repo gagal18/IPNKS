@@ -40,7 +40,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/bokig/finki/IPNKS",
+    "last_opened_file_path": "C:/Users/bokig/finki/IPNKS/lab_5",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -49,6 +49,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bokig\finki\IPNKS\lab_5" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bokig\finki\IPNKS\lab_5\assets" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -59,7 +67,9 @@
       <updated>1699735753427</updated>
       <workItem from="1699735754454" duration="17000" />
       <workItem from="1702138550484" duration="648000" />
-      <workItem from="1702139211337" duration="1863000" />
+      <workItem from="1702139211337" duration="2199000" />
+      <workItem from="1703440132130" duration="2571000" />
+      <workItem from="1705093783044" duration="3424000" />
     </task>
     <servers />
   </component>

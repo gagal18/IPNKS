@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script>
+    </script>
+</head>
+<body>
+<div>
+    <div style="text-align:right; float:left">
+        <label id="obid">Обиди 0</label>
+        <p>Погодок: <input id="guess" style="width:150px"/></p>
+        <button onclick="makeGuess()">Погоди</button>
+        <button onclick="restartGame()">Од почеток</button>
+    </div>
+</div>
+<br/>
+<div id="prikaz" style="clear: both">
+</div>
+<script>
+    class PlayGame {
+        constructor() {
+            this.tries = 10;
+            this.number = Math.floor(Math.random() * 9000) + 1000;
+            this.correct = false
+        }
+
+        getNumber() {
+            return this.number;
+        }
+
+        guessNumber(userGuess) {
+            if (this.tries > 0 && !this.correct) {
+                const show = document.getElementById("prikaz")
+                this.tries--;
+                document.getElementById("obid").innerText = `Обиди: ${10 - this.tries}`;
+                if(userGuess == this.number){
+                    show.innerHTML += `<p>Има 0, на место 4 ${userGuess}</p><p>ПОГОДОК!!!</p>`
+                    this.correct = true
+                }else{
+                    show.innerHTML += numPositions(userGuess, this.number)
+                }
+            }
+        }
+    }
+    function numPositions(numberCheck, numberCorrect) {
+        const nCheckArr = numberCheck.toString().split("");
+        const nCorrectArr = numberCorrect.toString().split("");
+        let correctPlace = 0;
+        let hasNumber = 0;
+
+        const unmatchedNumbersFirst = [];
+        const unmatchedNumbersSecond = [];
+
+        for (let i = 0; i < 4; i++) {
+            if (nCheckArr[i] == nCorrectArr[i]) {
+                correctPlace++;
+            } else {
+                unmatchedNumbersFirst.push(nCheckArr[i]);
+                unmatchedNumbersSecond.push(nCorrectArr[i]);
+            }
+        }
+
+        for (const num of unmatchedNumbersFirst) {
+            if (unmatchedNumbersSecond.includes(num)) {
+                hasNumber++;
+            }
+        }
+
+        return `<p>Има ${hasNumber}, на место ${correctPlace} ${numberCheck}</p>`;
+    }
+    let game = new PlayGame();
+
+    function makeGuess() {
+        const guessInput = document.getElementById("guess");
+        const userGuess = parseInt(guessInput.value);
+        game.guessNumber(userGuess);
+    }
+
+    function restartGame() {
+        game = new PlayGame()
+        document.getElementById("obid").innerText = "Обиди: 0";
+        document.getElementById("prikaz").innerText = "";
+        document.getElementById("guess").value = "";
+    }
+</script>
+</body>
+</html>

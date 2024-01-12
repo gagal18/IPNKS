@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+    <script>
+    </script>
+</head>
+<body>
+<h1>Калкулатор</h1>
+<div>
+    <div style="text-align:left; float:left">
+        <p>а <input id="a" style="width:15px"/>
+            b <input id="b" style="width:15px"/></p>
+        <p>
+            <input id="plus" type="radio" name="oper" checked>a+b
+            <input id="minus" type="radio" name="oper">a-b
+            <input id="mnoz" type="radio" name="oper" >a*b
+            <input id="del" type="radio" name="oper" >a/b
+            <br>
+            <input id="sin" type="radio" name="oper">sin(a)
+            <input id="cos" type="radio" name="oper">cos(a)
+            <input id="tg" type="radio" name="oper">tg(a)
+            <br>
+            <input id="cel" type="radio" name="oper">[a]
+            <input id="stepen" type="radio" name="oper">a<sup>b</sup>
+            <input id="koren" type="radio" name="oper">&radic;<span style="text-decoration:
+overline">a</span>
+        </p>
+        <button>Пресметај</button>
+        <p id="rezultat"></p>
+    </div>
+</div>
+<br/>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
+        const resultContainer = document.getElementById("rezultat");
+        const calculateButton = document.querySelector("button");
+
+        calculateButton.addEventListener("click", function () {
+            let result;
+
+            const selectedOperation = document.querySelector('input[name="oper"]:checked').id;
+
+            const numA = parseFloat(a.value);
+            const numB = parseFloat(b.value);
+
+            switch (selectedOperation) {
+                case "plus":
+                    result = numA + numB;
+                    break;
+                case "minus":
+                    result = numA - numB;
+                    break;
+                case "mnoz":
+                    result = numA * numB;
+                    break;
+                case "del":
+                    result = numA / numB;
+                    break;
+                case "sin":
+                    result = Math.sin(numA);
+                    break;
+                case "cos":
+                    result = Math.cos(numA);
+                    break;
+                case "tg":
+                    result = Math.tan(numA);
+                    break;
+                case "cel":
+                    result = Math.floor(numA);
+                    break;
+                case "stepen":
+                    result = Math.pow(numA, numB);
+                    break;
+                case "koren":
+                    result = Math.sqrt(numA);
+                    break;
+            }
+
+            resultContainer.textContent = `Result: ${result}`;
+        });
+    });
+</script>
+</body>
+</html>

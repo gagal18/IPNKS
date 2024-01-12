@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZADACA 4 - LAB 3</title>
+</head>
+<body>
+    <h1>ZADACA 4 - LAB 3</h1>
+</body>
+
+<script>
+    class Book {
+        constructor(title, author, alreadyRead) {
+            this.title = title;
+            this.author = author;
+            this.alreadyRead = alreadyRead;
+        }
+
+        printStatus() {
+            const readStatus = this.alreadyRead ? 'You already read' : 'You still need to read';
+            console.log(`${readStatus} "${this.title}" by ${this.author}.`);
+        }
+    }
+
+    const books = [
+        new Book('The Hobbit', 'J.R.R. Tolkien', true),
+        new Book('The Lord of the Rings', 'J.R.R. Tolkien', false),
+        new Book('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', true),
+        new Book('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', false),
+        new Book('Harry Potter and the Prisoner of Azkaban', 'J.K. Rowling', false),
+    ];
+
+    books.forEach(book => {
+        book.printStatus();
+    });
+</script>
+</html>
