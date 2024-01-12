@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script>
+    </script>
+    <style>
+        tr td img{
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<h1>Meморија</h1>
+<div style="text-align:left; float:left">
+    <table border="1" id="game-board"></table>
+    <input type="submit" value="RESET"/>
+</div>
+<br/>
+<script>
+    class MemoryGame {
+        constructor(rows, cols) {
+            this.rows = rows;
+            this.cols = cols;
+            this.images = [
+                'img_1.png', 'img_2.png', 'img_3.png', 'img_4.png',
+                'img_5.png', 'img_6.png', 'img_7.png', 'img_8.png'
+            ].map(image => `./assets/${image}`);
+            this.shuffleImages();
+            this.flippedCards = [];
+            this.createGameBoard();
+        }
+
+        shuffleImages() {
+            this.images = this.images.concat(this.images);
+            this.images = this.images.sort(() => Math.random() - 0.5);
+        }
+
+        createGameBoard() {
+            const table = document.getElementById('game-board');
+            table.innerHTML = '';
+            for (let i = 0; i < this.rows; i++) {
+                const row = table.insertRow();
+
+                for (let j = 0; j < this.cols; j++) {
+                    const cell = row.insertCell();
+                    const image = document.createElement('img');
+                    image.src = './assets/card.png';
+                    image.dataset.index = i * this.cols + j;
+                    image.addEventListener('click', () => this.flipCard(image));
+                    cell.appendChild(image);
+                }
+            }
+        }
+
+        flipCard(card) {
+            if (this.flippedCards.length < 2 && !this.flippedCards.includes(card)) {
+                card.src = this.images[card.dataset.index];
+                this.flippedCards.push(card);
+
+                if (this.flippedCards.length === 2) {
+                    setTimeout(() => this.checkMatch(), 1000);
+                }
+            }
+        }
+
+        checkMatch() {
+            const [card1, card2] = this.flippedCards;
+
+            if (card1.src === card2.src) {
+                this.flippedCards = [];
+            } else {
+                card1.src = './assets/card.png';
+                card2.src = './assets/card.png';
+                this.flippedCards = [];
+            }
+        }
+    }
+
+    const game = new MemoryGame(4, 4);
+    document.querySelector('[type="submit"]').addEventListener('click', () => {
+        game.shuffleImages();
+        game.createGameBoard();
+    });
+</script>
+</body>
