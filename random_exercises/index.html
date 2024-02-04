@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .red {
+        background-color: red;
+    }
+
+    .green {
+        background-color: green;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .yellow {
+        background-color: yellow;
+    }
+</style>
+<body>
+<script>
+    const typesBoxes = [
+        {
+            "size":  100,
+            "color": "yellow"
+        },
+        {
+            "color": "red",
+            "size": 120
+        },
+        {
+            "color": "green",
+            "size": 60
+        },
+        {
+            "color": "blue",
+            "size": 80
+        }
+    ];
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    const generateRandomSquares = () => {
+        typesBoxes.forEach(box => {
+            const size = box.size;
+            const color = box.color;
+
+            const square = document.createElement("div");
+
+            square.classList.add(color, "box");
+
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 100;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            square.style.position = "absolute";
+            square.style.left = `${randomX}px`;
+            square.style.top = `${randomY}px`;
+            square.style.width = `${size}px`;
+            square.style.height =  `${size}px`;
+
+            document.body.appendChild(square);
+            square.addEventListener("click", shareSquare);
+        });
+    };
+    const generate4NewSquares = async (type, xVal, yVal, size) => {
+        const squaresGenerated = [];
+        for (let i = 0; i < 4; i++) {
+            const square = document.createElement("div");
+
+            square.classList.add(type, "box");
+
+            square.style.position = "absolute";
+            square.style.left = `${yVal}px`;
+            square.style.top = `${xVal}px`;
+            square.style.width = `${size}px`;
+            square.style.height =  `${size}px`;
+
+            square.addEventListener("click", shareSquare);
+            document.body.appendChild(square);
+            squaresGenerated.push(square);
+        }
+
+        await delay(500);
+
+        for (let i = 0; i < 4; i++) {
+            const square = squaresGenerated[i];
+            square.style.transition = "top 2s, left 2s";
+            if(i % 2 == 0){
+                square.style.top = `${xVal - size}px`;
+            }else{
+                square.style.top = `${xVal + size}px`;
+            }
+            if(i%3 == 0){
+                square.style.left = `${yVal - size}px`;
+
+            }else{
+                square.style.left = `${yVal + size}px`;
+            }
+
+        }
+    };
+    const shareSquare = (e) => {
+        const topSquare = Number.parseInt(e.target.style.top)
+        const leftSquare = Number.parseInt(e.target.style.left)
+        const type = e.target.classList[0]
+        const size = typesBoxes.find(typeBox => typeBox.color == type).size
+        generate4NewSquares(type, topSquare, leftSquare, size)
+        e.target.style.opacity = 0
+    }
+    generateRandomSquares()
+</script>
+</body>
+</html>
